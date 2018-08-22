@@ -17,10 +17,8 @@ export default function (db, options) {
 			const hydrated = await options.hydrators[schema]().catch((e) => {})
 			const substate = { ...store.state[schema], ...hydrated }
 			store.replaceState({ ...store.state, [schema]: substate })
-			console.log('SCHEME', store.state)
 		}
 
-		console.log('HYDRATED')
 		store.replaceState({ ...store.state, hydrated: true })
 
 		store.subscribe((mutation, state) => {
